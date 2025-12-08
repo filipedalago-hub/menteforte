@@ -1,0 +1,466 @@
+{
+  "sistema_feedback_emocional": {
+    "descricao": "Sistema completo de inteligência emocional adaptativa para o app MenteForte",
+    "versao": "1.0.0",
+
+    "componentes_principais": {
+      "EmotionalIntelligenceEngine": {
+        "arquivo": "src/lib/emotionalIntelligence.ts",
+        "descricao": "Motor de inteligência emocional que seleciona mensagens contextuais",
+        "funcionalidades": [
+          "Seleção de mensagens baseada em contexto do usuário",
+          "Cálculo de score de consistência",
+          "Determinação de estilo cognitivo",
+          "Geração de insights diários personalizados"
+        ]
+      },
+
+      "EmotionalFeedback": {
+        "arquivo": "src/components/EmotionalFeedback.tsx",
+        "descricao": "Componente visual para exibir mensagens emocionais",
+        "props": {
+          "message": "Mensagem emocional com texto e tom",
+          "onDismiss": "Callback quando usuário fecha a mensagem",
+          "autoDismiss": "Se deve fechar automaticamente (default: true)",
+          "duration": "Duração em ms antes de fechar (default: 8000)"
+        }
+      },
+
+      "MoodTracker": {
+        "arquivo": "src/components/MoodTracker.tsx",
+        "descricao": "Componente para rastrear humor e energia do usuário",
+        "fluxo": [
+          "1. Pergunta sobre humor (1-5)",
+          "2. Pergunta sobre energia (1-5)",
+          "3. Opção de adicionar notas pessoais",
+          "4. Salva no banco de dados"
+        ]
+      },
+
+      "DailyInsight": {
+        "arquivo": "src/components/DailyInsight.tsx",
+        "descricao": "Exibe reflexão diária inspiradora para o usuário",
+        "comportamento": "Aparece uma vez por dia com mensagem adaptada ao contexto"
+      },
+
+      "GamificationPanel": {
+        "arquivo": "src/components/GamificationPanel.tsx",
+        "descricao": "Painel lateral com métricas de gamificação",
+        "métricas_exibidas": [
+          "XP e nível com barra de progresso",
+          "Sequência atual de dias",
+          "Total de exercícios completados",
+          "Score de consistência (0-100%)",
+          "Maior sequência conquistada",
+          "Conquistas recentes"
+        ]
+      },
+
+      "AchievementNotification": {
+        "arquivo": "src/components/AchievementNotification.tsx",
+        "descricao": "Notificação visual celebratória para conquistas",
+        "uso": "Aparece quando usuário desbloqueia badges ou atinge milestones"
+      }
+    },
+
+    "banco_de_dados": {
+      "tabelas_novas": {
+        "user_mood_tracking": {
+          "descricao": "Rastreia humor diário do usuário",
+          "campos": [
+            "user_id",
+            "date",
+            "mood_score (1-5)",
+            "mood_label",
+            "energy_level (1-5)",
+            "time_of_day",
+            "session_duration_seconds",
+            "notes"
+          ]
+        },
+
+        "user_behavior_patterns": {
+          "descricao": "Padrões comportamentais para personalização adaptativa",
+          "campos": [
+            "user_id",
+            "preferred_session_time",
+            "average_session_duration",
+            "most_active_trilha_id",
+            "completion_rate",
+            "abandonment_rate",
+            "consistency_score (0-100)",
+            "cognitive_style"
+          ]
+        },
+
+        "daily_insights": {
+          "descricao": "Insights e reflexões entregues diariamente",
+          "campos": [
+            "user_id",
+            "insight_text",
+            "insight_type",
+            "context_tags",
+            "delivered_at",
+            "read",
+            "read_at"
+          ]
+        },
+
+        "achievement_milestones": {
+          "descricao": "Marcos de conquista além de badges",
+          "campos": [
+            "user_id",
+            "milestone_type",
+            "milestone_value",
+            "title",
+            "message",
+            "emotional_tone",
+            "achieved_at"
+          ]
+        },
+
+        "user_session_log": {
+          "descricao": "Log detalhado de sessões para análise de padrões",
+          "campos": [
+            "user_id",
+            "session_start",
+            "session_end",
+            "duration_seconds",
+            "trilha_id",
+            "exercises_completed",
+            "xp_earned",
+            "mood_before",
+            "mood_after"
+          ]
+        }
+      },
+
+      "campos_adicionados_profiles": [
+        "onboarding_completed",
+        "preferred_name",
+        "life_purpose",
+        "total_sessions",
+        "total_time_minutes"
+      ]
+    },
+
+    "biblioteca_mensagens": {
+      "welcome": {
+        "first_time": [
+          "Você deu o primeiro passo. Isso já diz muito sobre quem você é.",
+          "Bem-vindo ao seu espaço de evolução. Aqui, cada momento conta.",
+          "Sua jornada começa agora. E você não está sozinho."
+        ],
+        "morning": [
+          "Bom dia. Sua mente está fresca… vamos aproveitar?",
+          "Começar o dia assim mostra clareza de propósito.",
+          "A manhã é sua. Que tal plantar algo bom na sua mente hoje?"
+        ],
+        "afternoon": [
+          "Meio do dia… e você veio. Isso é força.",
+          "Pausar para cuidar da mente no meio do dia é sabedoria.",
+          "Sua energia agora pode mudar o resto do seu dia."
+        ],
+        "evening": [
+          "Fim do dia, mas não fim da sua evolução.",
+          "Você voltou. Isso diz muito sobre seu compromisso.",
+          "A noite é perfeita para reflexão profunda."
+        ],
+        "night": [
+          "Tarde da noite… e você ainda cuida da sua mente. Impressionante.",
+          "O silêncio da noite amplifica a voz interior.",
+          "Sua dedicação não passa despercebida."
+        ]
+      },
+
+      "streak": {
+        "new_streak": [
+          "Segundo dia seguido. Você está criando um hábito.",
+          "Sua mente já sente a diferença."
+        ],
+        "week_streak": [
+          "7 dias. Você não está mais testando — você está vivendo isso.",
+          "Uma semana inteira. Sua consistência é sua maior força."
+        ],
+        "strong_streak": [
+          "Seu compromisso com você mesmo inspira.",
+          "{streak} dias consecutivos. Você está construindo algo raro.",
+          "Poucos chegam até aqui. Você é diferente."
+        ],
+        "streak_broken": [
+          "Você voltou. E isso é o que importa.",
+          "Recomeçar não é falhar. É coragem.",
+          "Sua jornada continua. Cada dia é uma nova chance."
+        ]
+      },
+
+      "progress": {
+        "first_exercise": [
+          "Primeiro exercício completo. Você começou de verdade.",
+          "Esse foi só o começo. Sente a mudança?"
+        ],
+        "milestone_10": [
+          "10 exercícios. Sua mente está mais clara que quando começou.",
+          "Você não percebe, mas já está diferente."
+        ],
+        "milestone_25": [
+          "25 exercícios. Você está construindo algo profundo.",
+          "Poucos chegam até aqui. Você é persistente."
+        ],
+        "milestone_50": [
+          "50 exercícios. Você não é mais quem era.",
+          "Metade de uma centena. Sua transformação é real."
+        ],
+        "slow_progress": [
+          "Progresso não precisa ser rápido. Precisa ser verdadeiro.",
+          "Cada passo importa. Mesmo os pequenos.",
+          "Você está no seu próprio ritmo. E está tudo bem."
+        ]
+      },
+
+      "return": {
+        "day_gap": [
+          "Você voltou. Isso já é vitória.",
+          "Sentimos sua falta. Mas você está aqui agora."
+        ],
+        "week_gap": [
+          "Passou um tempo… mas você não desistiu.",
+          "Voltar depois de um tempo mostra força real.",
+          "Sua jornada não acabou. Ela só pausou."
+        ],
+        "month_gap": [
+          "Faz tempo… mas você lembrou de voltar. Isso significa algo.",
+          "Não importa quanto tempo passou. Você está aqui agora.",
+          "Recomeçar é uma das coisas mais difíceis. E você fez."
+        ]
+      },
+
+      "mood_based": {
+        "low_mood_low_energy": [
+          "Eu sei que às vezes é pesado… mas você veio. Isso conta.",
+          "Dias difíceis também fazem parte. Você não está sozinho.",
+          "Apenas estar aqui hoje já é suficiente."
+        ],
+        "low_mood_high_energy": [
+          "Você tem energia, mas algo pesa. Vamos trabalhar nisso juntos.",
+          "Canalizar essa energia pode transformar como você se sente."
+        ],
+        "high_mood_low_energy": [
+          "Você está bem, mesmo cansado. Isso é equilíbrio.",
+          "Energia baixa, mas espírito alto. Admirável."
+        ],
+        "high_mood_high_energy": [
+          "Sua energia hoje está radiante. Vamos aproveitar!",
+          "Dias assim são presentes. Você está vibrando alto.",
+          "Esse é o melhor momento para ir mais fundo."
+        ]
+      },
+
+      "insights": {
+        "morning_insights": [
+          "Cada manhã é uma nova chance de reescrever sua história.",
+          "Sua mente pela manhã é como tela em branco. O que você vai pintar?",
+          "O dia não acontece para você. Ele acontece através de você."
+        ],
+        "evening_insights": [
+          "Refletir sobre o dia é tão importante quanto vivê-lo.",
+          "Cada dia tem algo para ensinar. Você está ouvindo?",
+          "A noite pergunta: quem você foi hoje?"
+        ],
+        "progress_insights": [
+          "Transformação real não faz barulho. Ela simplesmente acontece.",
+          "Você não precisa ver para acreditar. Precisa acreditar para ver.",
+          "Cada exercício é uma conversa com quem você está se tornando."
+        ],
+        "consistency_insights": [
+          "Consistência é você escolhendo você mesmo, todo dia.",
+          "Disciplina não é punição. É amor traduzido em ação.",
+          "Pequenos passos diários criam caminhos que duram para sempre."
+        ]
+      },
+
+      "session_feedback": {
+        "quick_session": [
+          "Sessão curta, mas presente. Isso já conta.",
+          "Poucos minutos com intenção valem mais que horas distraídas."
+        ],
+        "medium_session": [
+          "Você dedicou um bom tempo hoje. Sua mente agradece.",
+          "Sessão equilibrada. Você está encontrando seu ritmo."
+        ],
+        "long_session": [
+          "Sessão profunda. Você realmente mergulhou.",
+          "Dedicação assim transforma. Parabéns."
+        ]
+      }
+    },
+
+    "fluxo_adaptacao": {
+      "inicio_sessao": [
+        "1. Verifica se precisa mostrar MoodTracker",
+        "2. Se sim, coleta humor e energia",
+        "3. Gera mensagem contextual baseada em streak, horário, humor",
+        "4. Verifica se tem Daily Insight não lido",
+        "5. Exibe insight se aplicável"
+      ],
+
+      "durante_sessao": [
+        "1. Rastreia tempo de sessão",
+        "2. Monitora exercícios completados",
+        "3. Calcula XP ganho",
+        "4. Detecta milestones (10, 25, 50 exercícios)",
+        "5. Exibe mensagem de progresso quando apropriado"
+      ],
+
+      "fim_sessao": [
+        "1. Registra duração total da sessão",
+        "2. Atualiza behavior_patterns",
+        "3. Calcula consistency_score",
+        "4. Determina cognitive_style",
+        "5. Exibe feedback da sessão"
+      ],
+
+      "analise_periodica": [
+        "1. Atualiza padrões comportamentais semanalmente",
+        "2. Identifica trilha mais usada",
+        "3. Calcula taxa de conclusão",
+        "4. Ajusta dificuldade sugerida",
+        "5. Personaliza recomendações"
+      ]
+    },
+
+    "estilos_cognitivos": {
+      "profundo": {
+        "criterio": "completion_rate > 80% E session_duration > 15min",
+        "caracteristica": "Usuário gosta de aprofundar, completar tudo com calma"
+      },
+      "eficiente": {
+        "criterio": "completion_rate > 70% E session_duration < 10min",
+        "caracteristica": "Usuário é objetivo, foca em completar rapidamente"
+      },
+      "explorador": {
+        "criterio": "abandonment_rate > 30%",
+        "caracteristica": "Usuário experimenta muitas trilhas, não completa todas"
+      },
+      "descobrindo": {
+        "criterio": "completion_rate < 50%",
+        "caracteristica": "Usuário ainda está descobrindo o que funciona para ele"
+      },
+      "equilibrado": {
+        "criterio": "Padrão quando não se encaixa nos outros",
+        "caracteristica": "Usuário tem progresso consistente e balanceado"
+      }
+    },
+
+    "tons_emocionais": {
+      "celebrating": {
+        "uso": "Conquistas, milestones, sequências longas",
+        "cor": "Amarelo/Laranja",
+        "icone": "Sparkles"
+      },
+      "encouraging": {
+        "uso": "Progresso lento, retornos, primeiros passos",
+        "cor": "Azul/Ciano",
+        "icone": "Heart"
+      },
+      "empathetic": {
+        "uso": "Dias difíceis, humor baixo, recomeços",
+        "cor": "Rosa",
+        "icone": "Heart"
+      },
+      "wise": {
+        "uso": "Insights, reflexões profundas, consistência",
+        "cor": "Roxo",
+        "icone": "Brain"
+      },
+      "gentle": {
+        "uso": "Primeiras interações, retornos após gap longo",
+        "cor": "Verde/Teal",
+        "icone": "Heart"
+      },
+      "motivating": {
+        "uso": "Alta energia, manhãs, desafios",
+        "cor": "Amarelo",
+        "icone": "Lightbulb"
+      }
+    },
+
+    "metricas_gamificacao": {
+      "xp": {
+        "calculo": "10 XP por exercício base + bônus por streak",
+        "nivel": "level = floor(total_xp / 100)"
+      },
+      "streak": {
+        "calculo": "Dias consecutivos com pelo menos 1 exercício",
+        "reset": "Quebra se passar 24h sem atividade"
+      },
+      "consistency_score": {
+        "formula": "(streak_score * 0.4) + (frequency_score * 0.6)",
+        "range": "0-100",
+        "interpretacao": {
+          "80-100": "Excelente",
+          "60-79": "Muito bom",
+          "40-59": "Progredindo",
+          "0-39": "Começando"
+        }
+      }
+    },
+
+    "personalizacao_adaptativa": {
+      "mensagens_horario": {
+        "morning": "Tons motivadores, foco em começar bem o dia",
+        "afternoon": "Reconhecimento por pausar no meio do dia",
+        "evening": "Convite à reflexão sobre o dia",
+        "night": "Celebração da dedicação tardia"
+      },
+
+      "mensagens_humor": {
+        "low_mood": "Empatia, validação, gentileza",
+        "neutral_mood": "Encorajamento suave, normalidade",
+        "high_mood": "Celebração, aproveitar energia"
+      },
+
+      "mensagens_streak": {
+        "sem_streak": "Convite gentil a começar",
+        "1-6_dias": "Reconhecimento de hábito se formando",
+        "7-13_dias": "Celebração de semana completa",
+        "14+_dias": "Celebração de consistência rara"
+      }
+    }
+  },
+
+  "como_usar": {
+    "desenvolvedores": [
+      "1. Sistema já integrado no Dashboard",
+      "2. Hook useEmotionalFeedback gerencia todo estado",
+      "3. Mensagens aparecem automaticamente baseadas em contexto",
+      "4. Para adicionar novas mensagens: editar emotionalIntelligence.ts",
+      "5. Para novos triggers: editar useEmotionalFeedback.tsx"
+    ],
+
+    "adicionar_mensagens": {
+      "passo_1": "Abrir src/lib/emotionalIntelligence.ts",
+      "passo_2": "Adicionar categoria em emotionalMessages",
+      "passo_3": "Criar método get[Categoria]Message no Engine",
+      "passo_4": "Chamar método no momento apropriado do fluxo"
+    },
+
+    "testar_sistema": [
+      "1. Fazer login no app",
+      "2. Na primeira vez: aparece MoodTracker",
+      "3. Após responder: mensagem de boas-vindas contextual",
+      "4. Completar exercícios: mensagens de progresso",
+      "5. Voltar em dias diferentes: mensagens de streak/retorno"
+    ]
+  },
+
+  "proximos_passos_sugeridos": [
+    "Adicionar notificações push para engajamento",
+    "Criar sistema de desafios semanais personalizados",
+    "Implementar gráficos de evolução emocional",
+    "Adicionar jornada de onboarding personalizada",
+    "Criar sistema de recomendação de exercícios baseado em mood",
+    "Implementar reflexões guiadas adaptativas",
+    "Adicionar modo de meditação com mensagens durante prática"
+  ]
+}
