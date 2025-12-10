@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
-import { Brain, Zap, Target, Award, TrendingUp, Users, Sparkles, Lock } from 'lucide-react';
+import { Target, Award, TrendingUp, Users, Sparkles, Lock, Zap, Brain } from 'lucide-react';
+import { Logo } from '../components/Logo';
 
 export function LandingPage() {
   return (
@@ -9,18 +10,7 @@ export function LandingPage() {
       <nav className="relative z-10 border-b border-titanium/30 backdrop-blur-sm bg-dark/80">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
-            <div className="flex items-center gap-3 group">
-              <div className="relative">
-                <div className="absolute inset-0 bg-neon-cyan/20 blur-md rounded-full" />
-                <Brain className="relative w-8 h-8 text-neon-cyan" />
-              </div>
-              <div>
-                <h1 className="font-bold text-xl text-soft-white">
-                  Mente<span className="text-neon-cyan">Forte</span>
-                </h1>
-                <p className="text-xs text-soft-muted">Powered by AI</p>
-              </div>
-            </div>
+            <Logo size="md" />
             <div className="flex items-center gap-4">
               <Link
                 to="/login"
@@ -130,7 +120,7 @@ export function LandingPage() {
 
           <div className="relative z-10">
             <h2 className="text-4xl font-bold text-center mb-4 text-soft-white">
-              Por Que <span className="text-neon-cyan">MenteForte</span>?
+              Por Que <span className="text-neon-cyan">Mentes.ia</span>?
             </h2>
             <p className="text-center text-soft-gray mb-12 max-w-2xl mx-auto">
               A plataforma mais avancada de desenvolvimento mental com tecnologia de IA
@@ -218,25 +208,14 @@ export function LandingPage() {
       <footer className="relative border-t border-titanium/30 bg-dark-lighter py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-            <div className="flex items-center gap-3">
-              <div className="relative">
-                <div className="absolute inset-0 bg-neon-cyan/20 blur-md rounded-full" />
-                <Brain className="relative w-6 h-6 text-neon-cyan" />
-              </div>
-              <div>
-                <h3 className="font-semibold text-soft-white">
-                  Mente<span className="text-neon-cyan">Forte</span>
-                </h3>
-                <p className="text-xs text-soft-muted">Powered by AI</p>
-              </div>
-            </div>
+            <Logo size="sm" />
 
             <p className="text-soft-muted text-sm">
               Transformando mentes, transformando vidas.
             </p>
 
             <p className="text-soft-muted text-xs">
-              2025 MenteForte. Todos os direitos reservados.
+              2025 Mentes.ia. Todos os direitos reservados.
             </p>
           </div>
         </div>

@@ -3,6 +3,7 @@ import { Outlet, Link, useLocation, useNavigate } from 'react-router-dom';
 import { Home, User, Settings, HelpCircle, LogOut, Flame, Zap } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import { xpProgress } from '../utils/gamification';
+import { Logo } from './Logo';
 
 export function AppLayout() {
   const { profile, signOut } = useAuth();
@@ -19,33 +20,32 @@ export function AppLayout() {
   const progress = profile ? xpProgress(profile.xp) : { percentage: 0 };
 
   return (
-    <div className="min-h-screen bg-gray-50 no-scroll-x">
-      <nav className="bg-white border-b border-gray-200 sticky top-0 z-40">
+    <div className="min-h-screen bg-dark no-scroll-x">
+      <nav className="bg-dark-lighter border-b border-titanium/30 sticky top-0 z-40 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-8">
           <div className="flex justify-between items-center h-14 md:h-16">
-            <Link to="/app" className="flex items-center gap-2 font-bold text-lg md:text-xl text-gray-900">
-              <Zap className="w-5 h-5 md:w-6 md:h-6 text-blue-600" />
-              <span className="hidden sm:inline">MenteForte</span>
+            <Link to="/app" className="flex items-center">
+              <Logo size="sm" />
             </Link>
 
             {profile && (
               <div className="flex items-center gap-2 md:gap-6">
                 <div className="flex items-center gap-2 md:gap-4">
-                  <div className="flex items-center gap-1 md:gap-2 px-2 md:px-3 py-1 md:py-1.5 bg-orange-50 rounded-full">
-                    <Flame className="w-3 h-3 md:w-4 md:h-4 text-orange-500" />
-                    <span className="font-semibold text-xs md:text-sm text-orange-700">{profile.current_streak}</span>
+                  <div className="flex items-center gap-1 md:gap-2 px-2 md:px-3 py-1 md:py-1.5 bg-neon-cyan/10 border border-neon-cyan/30 rounded-full">
+                    <Flame className="w-3 h-3 md:w-4 md:h-4 text-neon-cyan" />
+                    <span className="font-semibold text-xs md:text-sm text-neon-cyan">{profile.current_streak}</span>
                   </div>
 
-                  <div className="flex items-center gap-1 md:gap-2 px-2 md:px-3 py-1 md:py-1.5 bg-blue-50 rounded-full">
-                    <Zap className="w-3 h-3 md:w-4 md:h-4 text-blue-600" />
-                    <span className="font-semibold text-xs md:text-sm text-blue-700">{profile.xp}</span>
+                  <div className="flex items-center gap-1 md:gap-2 px-2 md:px-3 py-1 md:py-1.5 bg-primary/10 border border-primary/30 rounded-full">
+                    <Zap className="w-3 h-3 md:w-4 md:h-4 text-primary" />
+                    <span className="font-semibold text-xs md:text-sm text-primary">{profile.xp}</span>
                   </div>
 
                   <div className="hidden sm:flex items-center gap-2">
-                    <span className="text-xs md:text-sm font-medium text-gray-700">Nv {profile.level}</span>
-                    <div className="w-16 md:w-24 bg-gray-200 rounded-full h-2">
+                    <span className="text-xs md:text-sm font-medium text-soft-white">Nv {profile.level}</span>
+                    <div className="w-16 md:w-24 bg-titanium rounded-full h-2">
                       <div
-                        className="bg-gradient-to-r from-blue-500 to-blue-600 h-full rounded-full transition-all"
+                        className="bg-gradient-primary h-full rounded-full transition-all shadow-glow-sm"
                         style={{ width: `${progress.percentage}%` }}
                       />
                     </div>
@@ -63,22 +63,22 @@ export function AppLayout() {
             <nav className="space-y-1">
               <Link
                 to="/app"
-                className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
+                className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-all ${
                   isActive('/app')
-                    ? 'bg-blue-50 text-blue-700 font-medium'
-                    : 'text-gray-700 hover:bg-gray-100'
+                    ? 'bg-primary/20 text-neon-cyan font-medium border border-primary/30'
+                    : 'text-soft-gray hover:bg-titanium/50 hover:text-soft-white'
                 }`}
               >
                 <Home className="w-5 h-5" />
-                Início
+                Inicio
               </Link>
 
               <Link
                 to="/app/profile"
-                className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
+                className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-all ${
                   isActive('/app/profile')
-                    ? 'bg-blue-50 text-blue-700 font-medium'
-                    : 'text-gray-700 hover:bg-gray-100'
+                    ? 'bg-primary/20 text-neon-cyan font-medium border border-primary/30'
+                    : 'text-soft-gray hover:bg-titanium/50 hover:text-soft-white'
                 }`}
               >
                 <User className="w-5 h-5" />
@@ -87,22 +87,22 @@ export function AppLayout() {
 
               <Link
                 to="/app/settings"
-                className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
+                className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-all ${
                   isActive('/app/settings')
-                    ? 'bg-blue-50 text-blue-700 font-medium'
-                    : 'text-gray-700 hover:bg-gray-100'
+                    ? 'bg-primary/20 text-neon-cyan font-medium border border-primary/30'
+                    : 'text-soft-gray hover:bg-titanium/50 hover:text-soft-white'
                 }`}
               >
                 <Settings className="w-5 h-5" />
-                Configurações
+                Configuracoes
               </Link>
 
               <Link
                 to="/app/help"
-                className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
+                className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-all ${
                   isActive('/app/help')
-                    ? 'bg-blue-50 text-blue-700 font-medium'
-                    : 'text-gray-700 hover:bg-gray-100'
+                    ? 'bg-primary/20 text-neon-cyan font-medium border border-primary/30'
+                    : 'text-soft-gray hover:bg-titanium/50 hover:text-soft-white'
                 }`}
               >
                 <HelpCircle className="w-5 h-5" />
@@ -111,7 +111,7 @@ export function AppLayout() {
 
               <button
                 onClick={handleSignOut}
-                className="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors"
+                className="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-soft-gray hover:bg-titanium/50 hover:text-soft-white transition-all"
               >
                 <LogOut className="w-5 h-5" />
                 Sair

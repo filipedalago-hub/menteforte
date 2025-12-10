@@ -1,7 +1,8 @@
 import { useState, FormEvent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Zap, AlertCircle } from 'lucide-react';
+import { AlertCircle, ArrowLeft } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
+import { Logo } from '../components/Logo';
 
 export function SignupPage() {
   const [email, setEmail] = useState('');
@@ -41,31 +42,39 @@ export function SignupPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-primary/5 to-white flex items-center justify-center px-4">
-      <div className="w-full max-w-md">
+    <div className="min-h-screen bg-dark flex items-center justify-center px-4 relative">
+      <div className="fixed inset-0 bg-gradient-to-b from-neon-cyan/5 via-transparent to-primary/5 pointer-events-none" />
+
+      <div className="absolute top-4 left-4">
+        <Link to="/" className="inline-flex items-center gap-2 text-soft-gray hover:text-soft-white transition-colors">
+          <ArrowLeft className="w-5 h-5" />
+          Voltar
+        </Link>
+      </div>
+
+      <div className="w-full max-w-md relative z-10">
         <div className="text-center mb-8">
-          <Link to="/" className="inline-flex items-center gap-2 font-bold text-2xl text-gray-900 mb-4">
-            <Zap className="w-8 h-8 text-primary" />
-            MenteForte
+          <Link to="/" className="inline-block mb-6">
+            <Logo size="lg" />
           </Link>
-          <h1 className="text-3xl font-bold mb-2">Comece sua jornada</h1>
-          <p className="text-gray-600">Crie sua conta e transforme sua mente</p>
+          <h1 className="text-3xl font-bold mb-2 text-soft-white">Comece sua jornada</h1>
+          <p className="text-soft-gray">Crie sua conta e transforme sua mente</p>
         </div>
 
-        <div className="bg-white p-8 rounded-xl shadow-lg border border-gray-200">
+        <div className="card-dark">
           {error && (
             <div
-              className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg flex items-start gap-3"
+              className="mb-6 p-4 bg-red-500/10 border border-red-500/30 rounded-lg flex items-start gap-3"
               role="alert"
             >
-              <AlertCircle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
-              <p className="text-red-800">{error}</p>
+              <AlertCircle className="w-5 h-5 text-red-400 flex-shrink-0 mt-0.5" />
+              <p className="text-red-300">{error}</p>
             </div>
           )}
 
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <label htmlFor="displayName" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="displayName" className="label-dark">
                 Nome
               </label>
               <input
@@ -73,7 +82,7 @@ export function SignupPage() {
                 id="displayName"
                 value={displayName}
                 onChange={(e) => setDisplayName(e.target.value)}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-shadow"
+                className="input-dark w-full"
                 placeholder="Seu nome"
                 disabled={loading}
                 autoComplete="name"
@@ -81,7 +90,7 @@ export function SignupPage() {
             </div>
 
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="email" className="label-dark">
                 Email
               </label>
               <input
@@ -89,7 +98,7 @@ export function SignupPage() {
                 id="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-shadow"
+                className="input-dark w-full"
                 placeholder="seu@email.com"
                 disabled={loading}
                 autoComplete="email"
@@ -97,7 +106,7 @@ export function SignupPage() {
             </div>
 
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="password" className="label-dark">
                 Senha
               </label>
               <input
@@ -105,27 +114,27 @@ export function SignupPage() {
                 id="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-shadow"
+                className="input-dark w-full"
                 placeholder="••••••••"
                 disabled={loading}
                 autoComplete="new-password"
               />
-              <p className="mt-2 text-sm text-gray-500">Mínimo de 6 caracteres</p>
+              <p className="mt-2 text-sm text-soft-muted">Minimo de 6 caracteres</p>
             </div>
 
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-3 bg-primary text-white font-semibold rounded-lg hover:bg-primary-dark disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
+              className="btn-primary w-full"
             >
               {loading ? 'Criando conta...' : 'Criar conta'}
             </button>
           </form>
 
           <div className="mt-6 text-center">
-            <p className="text-gray-600">
-              Já tem uma conta?{' '}
-              <Link to="/login" className="text-primary font-semibold hover:text-primary-dark">
+            <p className="text-soft-gray">
+              Ja tem uma conta?{' '}
+              <Link to="/login" className="text-neon-cyan font-semibold hover:text-primary transition-colors">
                 Entrar
               </Link>
             </p>

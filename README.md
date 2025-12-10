@@ -1,92 +1,92 @@
-# MenteForte - Plataforma de Desenvolvimento Mental
+# Mentes.ia - Plataforma de Desenvolvimento Mental com IA
 
-Uma aplicação web gamificada para desenvolvimento mental e espiritual, inspirada no modelo de aprendizado do Duolingo, mas com identidade visual e conteúdo 100% originais.
+Uma aplicacao web futurista e gamificada para desenvolvimento mental e espiritual, potencializada por inteligencia artificial.
 
-## Visão Geral
+## Visao Geral
 
-MenteForte é uma plataforma completa que oferece três trilhas de aprendizado:
+**Mentes.ia** e uma plataforma completa que oferece tres trilhas de aprendizado:
 
-1. **Fundamentos Mentais** - Base sólida de autoconhecimento, inteligência emocional e mentalidade de crescimento
-2. **Treinamento da Mente** - Neuro-hábitos avançados para desbloquear potencial mental máximo
-3. **Propósito, Espiritualidade e Deus** - Descoberta de propósito e conexão espiritual profunda
+1. **Fundamentos Mentais** - Base solida de autoconhecimento, inteligencia emocional e mentalidade de crescimento
+2. **Treinamento da Mente** - Neuro-habitos avancados para desbloquear potencial mental maximo
+3. **Proposito, Espiritualidade e Deus** - Descoberta de proposito e conexao espiritual profunda
 
 ## Tecnologias Utilizadas
 
 - **Frontend**: React 18 + TypeScript + Vite
 - **Roteamento**: React Router v7
-- **Estilização**: TailwindCSS + CSS customizado
+- **Estilizacao**: TailwindCSS + CSS customizado
 - **Banco de Dados**: Supabase (PostgreSQL)
-- **Autenticação**: Supabase Auth (Email/Password)
-- **Ícones**: Lucide React
+- **Autenticacao**: Supabase Auth (Email/Password)
+- **Icones**: Lucide React
 - **Testes**: Vitest + React Testing Library
 
 ## Funcionalidades Implementadas
 
-### Sistema de Gamificação
-- ✅ Sistema de XP (Pontos de Experiência)
-- ✅ Níveis progressivos baseados em XP
-- ✅ Streak diário (sequência de dias consecutivos)
-- ✅ Sistema de badges/conquistas
-- ✅ Progresso visual em todas as telas
-- ✅ Feedback imediato ao completar exercícios
+### Sistema de Gamificacao
+- Sistema de XP (Pontos de Experiencia)
+- Niveis progressivos baseados em XP
+- Streak diario (sequencia de dias consecutivos)
+- Sistema de badges/conquistas
+- Progresso visual em todas as telas
+- Feedback imediato ao completar exercicios
 
-### Trilhas e Exercícios
-- ✅ 3 trilhas completas de aprendizado
-- ✅ 16 pilares distribuídos entre as trilhas
-- ✅ Múltiplos exercícios por pilar
-- ✅ 9 tipos diferentes de exercícios:
-  - Reflexão (texto longo)
-  - Múltipla escolha com feedback
-  - Escalas de avaliação
+### Trilhas e Exercicios
+- 3 trilhas completas de aprendizado
+- 16 pilares distribuidos entre as trilhas
+- Multiplos exercicios por pilar
+- 9 tipos diferentes de exercicios:
+  - Reflexao (texto longo)
+  - Multipla escolha com feedback
+  - Escalas de avaliacao
   - Checklists
-  - Atenção focada com timer
-  - Respiração guiada com animação
-  - Lista de gratidão
-  - Reflexão espiritual/oração
-  - Autoavaliação moral
+  - Atencao focada com timer
+  - Respiracao guiada com animacao
+  - Lista de gratidao
+  - Reflexao espiritual/oracao
+  - Autoavaliacao moral
 
-### Funcionalidades Técnicas
-- ✅ Autosave com debounce (800ms)
-- ✅ Indicadores visuais de salvamento
-- ✅ Sistema de toasts para notificações
-- ✅ Breadcrumbs em todas as páginas
-- ✅ Skeletons durante carregamento
-- ✅ Navegação responsiva (desktop/tablet/mobile)
-- ✅ Acessibilidade (ARIA labels, navegação por teclado)
-- ✅ Animações e microinterações
-- ✅ Tratamento de erros com feedback visual
+### Funcionalidades Tecnicas
+- Autosave com debounce (800ms)
+- Indicadores visuais de salvamento
+- Sistema de toasts para notificacoes
+- Breadcrumbs em todas as paginas
+- Skeletons durante carregamento
+- Navegacao responsiva (desktop/tablet/mobile)
+- Acessibilidade (ARIA labels, navegacao por teclado)
+- Animacoes e microinteracoes
+- Tratamento de erros com feedback visual
 
-### Páginas Implementadas
-- ✅ Landing page
-- ✅ Login e Signup
-- ✅ Dashboard com cards das trilhas
-- ✅ Página de trilha (lista de pilares)
-- ✅ Página de pilar (lista de exercícios)
-- ✅ Página de exercício (todos os tipos)
-- ✅ Perfil do usuário
-- ✅ Configurações
-- ✅ Central de ajuda
-- ✅ Página 404
+### Paginas Implementadas
+- Landing page futurista
+- Login e Signup com tema dark
+- Dashboard com cards das trilhas
+- Pagina de trilha (lista de pilares)
+- Pagina de pilar (lista de exercicios)
+- Pagina de exercicio (todos os tipos)
+- Perfil do usuario
+- Configuracoes
+- Central de ajuda
+- Pagina 404
 
 ## Como Rodar Localmente
 
-### Pré-requisitos
+### Pre-requisitos
 - Node.js 18+ instalado
 - npm ou yarn
 
-### Instalação
+### Instalacao
 
-1. Clone o repositório:
+1. Clone o repositorio:
 ```bash
 cd /tmp/cc-agent/60272935/project
 ```
 
-2. Instale as dependências:
+2. Instale as dependencias:
 ```bash
 npm install
 ```
 
-3. As variáveis de ambiente já estão configuradas no arquivo `.env`
+3. As variaveis de ambiente ja estao configuradas no arquivo `.env`
 
 4. Inicie o servidor de desenvolvimento:
 ```bash
@@ -97,9 +97,9 @@ npm run dev
 
 ## Como Testar
 
-### Testes Unitários
+### Testes Unitarios
 
-Execute os testes unitários:
+Execute os testes unitarios:
 ```bash
 npm test
 ```
@@ -109,25 +109,14 @@ Para rodar os testes em modo watch:
 npm run test:watch
 ```
 
-### Teste E2E Manual
+## Build de Producao
 
-1. Crie uma nova conta em `/signup`
-2. Faça login com suas credenciais
-3. No dashboard, escolha a trilha "Fundamentos Mentais"
-4. Selecione o pilar "Autoconhecimento"
-5. Complete o exercício "Identificando Seus Valores"
-6. Observe o XP sendo adicionado
-7. Volte ao dashboard e veja o progresso atualizado
-8. Verifique que os dados foram salvos recarregando a página
-
-## Build de Produção
-
-Para criar o build de produção:
+Para criar o build de producao:
 ```bash
 npm run build
 ```
 
-Os arquivos otimizados serão gerados na pasta `dist/`.
+Os arquivos otimizados serao gerados na pasta `dist/`.
 
 Para testar o build localmente:
 ```bash
@@ -138,114 +127,115 @@ npm run preview
 
 ```
 src/
-├── components/          # Componentes reutilizáveis
-│   ├── exercises/      # Componentes de exercícios
+├── components/          # Componentes reutilizaveis
+│   ├── exercises/      # Componentes de exercicios
 │   ├── __tests__/      # Testes de componentes
 │   ├── AppLayout.tsx
 │   ├── Breadcrumbs.tsx
+│   ├── Logo.tsx
 │   ├── ProgressBar.tsx
 │   ├── Skeleton.tsx
 │   ├── Toast.tsx
 │   └── ProtectedRoute.tsx
 ├── contexts/           # Contextos React (Auth)
 ├── hooks/             # Custom hooks
-├── lib/               # Configuração Supabase
-├── pages/             # Páginas da aplicação
-├── utils/             # Funções utilitárias
+├── lib/               # Configuracao Supabase
+├── pages/             # Paginas da aplicacao
+├── utils/             # Funcoes utilitarias
 └── test/              # Setup de testes
 ```
 
 ## Banco de Dados
 
 ### Tabelas Principais
-- `profiles` - Perfis de usuário com XP, level, streak
+- `profiles` - Perfis de usuario com XP, level, streak
 - `trilhas` - Trilhas de aprendizado
 - `pilares` - Pilares dentro de cada trilha
-- `exercises` - Exercícios individuais
-- `user_exercise_progress` - Progresso do usuário
-- `badges` - Conquistas disponíveis
+- `exercises` - Exercicios individuais
+- `user_exercise_progress` - Progresso do usuario
+- `badges` - Conquistas disponiveis
 - `user_badges` - Conquistas desbloqueadas
 
-Todas as tabelas possuem Row Level Security (RLS) configurado para garantir que usuários só acessem seus próprios dados.
+Todas as tabelas possuem Row Level Security (RLS) configurado para garantir que usuarios so acessem seus proprios dados.
 
-## Design Original
+## Design Futurista
 
-### Paleta de Cores
-- Primária: Azul (#2563EB)
-- Sucesso: Verde (#10B981)
-- Aviso: Laranja (#F59E0B)
-- Destaque: Roxo (#9333EA)
-- Neutros: Escala de cinza
+### Paleta de Cores Tech
+- **Azul Primario**: #00AEEF - Botoes principais, destaques
+- **Ciano Eletrico**: #14F1FF - Efeitos glow, estados ativos
+- **Azul Neonico**: #0066FF - Gradientes, elementos fortes
+- **Fundo Escuro**: #0A0F2D - Background principal
+- **Fundo Escuro Claro**: #111936 - Cards e secoes
+- **Cinza Titanium**: #2F3A4D - Elementos secundarios
+- **Branco Suave**: #E6F1FF - Textos principais
+- **Cinza Suave**: #A9B9D6 - Subtitulos
+
+### Gradientes
+- **Principal**: #00AEEF → #0066FF
+- **Especial**: #14F1FF → #00AEEF
 
 ### Identidade Visual
-- **Logo**: Raio (Zap) em azul representando energia mental
-- **Mascote**: Não utilizado (diferente do Duolingo)
-- **Tipografia**: System fonts para melhor performance
-- **Ícones**: Lucide React (biblioteca open source)
-- **Badges originais**: Crown, Award, Compass, Flame, Zap
+- **Logo**: Cerebro com circuitos neurais em cyan neon
+- **Tipografia**: Mentes.ia (com destaque cyan no ".ia")
+- **Efeitos**: Glow neon, blur, animacoes float e pulse
+- **Icones**: Lucide React com cores futuristas
+- **Tema**: Sci-fi, high-tech, minimalista
 
-### Inspiração vs. Implementação
-Enquanto a gamificação foi **inspirada** no Duolingo, todos os elementos visuais, textos, exercícios e design são **100% originais**:
-- Cores diferentes
-- Ícones diferentes
-- Exercícios criados especificamente para desenvolvimento mental
-- Conteúdo espiritual único
-- Layout e componentes próprios
+### Estetica
+- Interface futurista minimalista
+- Neon cyan com detalhes sutis
+- Luxo tecnologico
+- Cartoes flutuantes com bordas glow
+- UI elegante, limpa e moderna
+- Animacoes suaves e microinteracoes
 
-## Estrutura de Gamificação
+## Estrutura de Gamificacao
 
 ### Sistema de XP
-- Cada exercício concede 10-20 XP
-- Nível = √(XP/100) + 1
-- XP para próximo nível = (nível²) × 100
+- Cada exercicio concede 10-20 XP
+- Nivel = √(XP/100) + 1
+- XP para proximo nivel = (nivel²) × 100
 
 ### Sistema de Streak
-- Completa pelo menos 1 exercício por dia
+- Completa pelo menos 1 exercicio por dia
 - Streak quebra se passar mais de 1 dia sem atividade
-- Registro do maior streak alcançado
+- Registro do maior streak alcancado
 
-### Badges Disponíveis
-1. **Primeiro Passo** - Complete 1 exercício
-2. **Explorador** - Complete 10 exercícios
-3. **Dedicado** - 7 dias de sequência
-4. **Mestre Mental** - Complete 50 exercícios
-5. **Fogo Constante** - 30 dias de sequência
+### Badges Disponiveis
+1. **Primeiro Passo** - Complete 1 exercicio
+2. **Explorador** - Complete 10 exercicios
+3. **Dedicado** - 7 dias de sequencia
+4. **Mestre Mental** - Complete 50 exercicios
+5. **Fogo Constante** - 30 dias de sequencia
 
 ## Responsividade
 
-A aplicação é totalmente responsiva com breakpoints:
+A aplicacao e totalmente responsiva com breakpoints:
 - Mobile: < 768px
 - Tablet: 768px - 1024px
 - Desktop: > 1024px
 
 ## Acessibilidade
 
-- ✅ Todos os elementos interativos são acessíveis via teclado
-- ✅ ARIA labels em todos os componentes importantes
-- ✅ Roles semânticos (navigation, main, button, etc.)
-- ✅ Contraste adequado de cores (WCAG AA)
-- ✅ Feedback visual e textual para ações
-- ✅ Foco visível em todos os elementos interativos
+- Todos os elementos interativos sao acessiveis via teclado
+- ARIA labels em todos os componentes importantes
+- Roles semanticos (navigation, main, button, etc.)
+- Contraste adequado de cores (WCAG AA)
+- Feedback visual e textual para acoes
+- Foco visivel em todos os elementos interativos
 
-## Observações Importantes
+## Observacoes Importantes
 
-1. **Autenticação**: Email/password via Supabase Auth
-2. **Persistência**: Todos os dados são salvos no Supabase
-3. **Autosave**: Respostas são salvas automaticamente após 800ms
-4. **Offline**: Não há suporte offline (requer conexão)
+1. **Autenticacao**: Email/password via Supabase Auth
+2. **Persistencia**: Todos os dados sao salvos no Supabase
+3. **Autosave**: Respostas sao salvas automaticamente apos 800ms
+4. **Offline**: Nao ha suporte offline (requer conexao)
 5. **Browser Support**: Navegadores modernos (Chrome, Firefox, Safari, Edge)
-
-## Limitações Conhecidas
-
-- Sistema de loja de recompensas é apenas UI (não funcional)
-- Planos Pro Mensal/Anual são apenas UI (não há sistema de pagamento)
-- Notificações push não implementadas
-- Modo escuro não implementado (apenas UI no settings)
 
 ## Autor
 
-Desenvolvido como projeto de demonstração de uma plataforma completa de desenvolvimento mental gamificada.
+Desenvolvido como plataforma completa de desenvolvimento mental com IA e design futurista.
 
 ---
 
-**Não houve publicação** - Este projeto está pronto para execução local ou deploy manual.
+**Mentes.ia** - Transformando mentes, transformando vidas.
