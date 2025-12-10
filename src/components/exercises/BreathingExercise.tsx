@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Play, Pause } from 'lucide-react';
 
 type BreathingExerciseProps = {
@@ -86,35 +86,35 @@ export function BreathingExercise({ content, onComplete }: BreathingExerciseProp
   const displaySeconds = Math.max(0, secondsLeft);
 
   return (
-    <div className="space-y-6 w-full max-w-full overflow-hidden">
-      <div className="px-4 md:px-0">
-        <h3 className="text-lg md:text-xl font-semibold mb-2 responsive-text">Respiração Guiada</h3>
-        <p className="text-sm md:text-base text-gray-600 responsive-text">{content.instruction}</p>
+    <div className="space-y-6 w-full">
+      <div>
+        <h3 className="text-lg md:text-xl font-semibold mb-2 text-soft-white">Respiracao Guiada</h3>
+        <p className="text-sm md:text-base text-soft-gray">{content.instruction}</p>
       </div>
 
-      <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-6 md:p-12 rounded-xl">
+      <div className="bg-gradient-to-br from-primary/20 to-neon-blue/20 p-6 md:p-12 rounded-xl border border-primary/30">
         <div className="flex flex-col items-center justify-center gap-6">
           <div className="text-center">
-            <p className="text-sm md:text-base text-gray-600">
+            <p className="text-sm md:text-base text-soft-gray">
               Ciclo {displayCycle} de {cycles}
             </p>
           </div>
 
           <div className="relative w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 flex items-center justify-center flex-shrink-0">
             <div
-              className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 transition-transform duration-1000 ease-in-out"
+              className="absolute inset-0 rounded-full bg-gradient-to-br from-primary to-neon-blue transition-transform duration-1000 ease-in-out shadow-glow-md"
               style={{ transform: `scale(${scale})` }}
             />
             <div className="relative z-10 text-center">
-              <p className="text-xl md:text-2xl font-bold text-white mb-1 md:mb-2">{phaseLabels[phase]}</p>
-              <p className="text-4xl md:text-5xl font-bold text-white">{displaySeconds}</p>
+              <p className="text-xl md:text-2xl font-bold text-soft-white mb-1 md:mb-2">{phaseLabels[phase]}</p>
+              <p className="text-4xl md:text-5xl font-bold text-soft-white">{displaySeconds}</p>
             </div>
           </div>
 
           {!isComplete ? (
             <button
               onClick={() => isRunning ? setIsRunning(false) : handleStart()}
-              className="relative z-20 w-full max-w-xs px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center gap-2"
+              className="btn-primary relative z-20 w-full max-w-xs flex items-center justify-center gap-2"
             >
               {isRunning ? (
                 <>
@@ -124,16 +124,16 @@ export function BreathingExercise({ content, onComplete }: BreathingExerciseProp
               ) : (
                 <>
                   <Play className="w-5 h-5" />
-                  {currentCycle === 0 ? 'Começar' : 'Continuar'}
+                  {currentCycle === 0 ? 'Comecar' : 'Continuar'}
                 </>
               )}
             </button>
           ) : (
             <button
               onClick={onComplete}
-              className="relative z-20 w-full max-w-xs px-6 py-3 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 transition-colors"
+              className="btn-neon relative z-20 w-full max-w-xs"
             >
-              Concluir Exercício
+              Concluir Exercicio
             </button>
           )}
         </div>

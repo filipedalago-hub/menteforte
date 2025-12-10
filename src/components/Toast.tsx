@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { X, CheckCircle, AlertCircle, Info } from 'lucide-react';
 
 type ToastType = 'success' | 'error' | 'info';
@@ -23,23 +23,23 @@ export function Toast({ message, type, onClose, duration = 3000 }: ToastProps) {
   };
 
   const styles = {
-    success: 'bg-green-50 text-green-800 border-green-200',
-    error: 'bg-red-50 text-red-800 border-red-200',
-    info: 'bg-blue-50 text-blue-800 border-blue-200',
+    success: 'bg-green-500/20 text-green-400 border-green-500/30',
+    error: 'bg-red-500/20 text-red-400 border-red-500/30',
+    info: 'bg-primary/20 text-primary border-primary/30',
   };
 
   return (
     <div
       role="alert"
       aria-live="polite"
-      className={`fixed top-4 right-4 z-50 flex items-center gap-3 px-4 py-3 rounded-lg border shadow-lg animate-slideIn ${styles[type]}`}
+      className={`fixed top-4 right-4 z-50 flex items-center gap-3 px-4 py-3 rounded-xl border backdrop-blur-sm shadow-lg animate-slideIn ${styles[type]}`}
     >
       {icons[type]}
       <p className="font-medium">{message}</p>
       <button
         onClick={onClose}
         className="ml-2 hover:opacity-70 transition-opacity"
-        aria-label="Fechar notificação"
+        aria-label="Fechar notificacao"
       >
         <X className="w-4 h-4" />
       </button>

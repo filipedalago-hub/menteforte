@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { CheckCircle, XCircle } from 'lucide-react';
 
 type MultipleChoiceExerciseProps = {
@@ -37,7 +37,7 @@ export function MultipleChoiceExercise({
 
   const handleSubmit = () => {
     if (!selectedId) {
-      alert('Por favor, selecione uma opção.');
+      alert('Por favor, selecione uma opcao.');
       return;
     }
     setSubmitted(true);
@@ -50,12 +50,12 @@ export function MultipleChoiceExercise({
   const isCorrect = content.correctId ? selectedId === content.correctId : true;
 
   return (
-    <div className="space-y-6 w-full max-w-full overflow-hidden">
-      <div className="px-4 md:px-0">
-        <h3 className="text-lg md:text-xl font-semibold responsive-text">{content.question}</h3>
+    <div className="space-y-6 w-full">
+      <div>
+        <h3 className="text-lg md:text-xl font-semibold text-soft-white">{content.question}</h3>
       </div>
 
-      <div className="space-y-3 px-4 md:px-0">
+      <div className="space-y-3">
         {normalizedOptions.map((option) => {
           const isSelected = selectedId === option.id;
           const showResult = submitted && isSelected;
@@ -66,29 +66,33 @@ export function MultipleChoiceExercise({
               key={option.id}
               onClick={() => handleSelect(option.id)}
               disabled={submitted}
-              className={`w-full text-left p-4 rounded-lg border-2 transition-all ${
+              className={`w-full text-left p-4 rounded-xl border-2 transition-all ${
                 isSelected
                   ? showResult
                     ? isCorrect
-                      ? 'border-green-500 bg-green-50'
-                      : 'border-red-500 bg-red-50'
-                    : 'border-blue-500 bg-blue-50'
-                  : 'border-gray-300 hover:border-gray-400 bg-white'
+                      ? 'border-green-500 bg-green-500/10'
+                      : 'border-red-500 bg-red-500/10'
+                    : 'border-primary bg-primary/10'
+                  : 'border-titanium/30 hover:border-titanium bg-dark-lighter'
               } ${submitted ? 'cursor-default' : 'cursor-pointer'}`}
             >
               <div className="flex items-center justify-between gap-4">
-                <span className="font-medium text-sm md:text-base responsive-text flex-1">{option.text}</span>
+                <span className={`font-medium text-sm md:text-base flex-1 ${
+                  isSelected ? 'text-soft-white' : 'text-soft-gray'
+                }`}>
+                  {option.text}
+                </span>
                 {showResult && content.correctId && (
                   <div className="flex-shrink-0">
                     {isCorrect ? (
-                      <CheckCircle className="w-6 h-6 text-green-600" />
+                      <CheckCircle className="w-6 h-6 text-green-400" />
                     ) : (
-                      <XCircle className="w-6 h-6 text-red-600" />
+                      <XCircle className="w-6 h-6 text-red-400" />
                     )}
                   </div>
                 )}
                 {submitted && !isSelected && isThisCorrect && (
-                  <CheckCircle className="w-6 h-6 text-green-600" />
+                  <CheckCircle className="w-6 h-6 text-green-400" />
                 )}
               </div>
             </button>
@@ -97,26 +101,26 @@ export function MultipleChoiceExercise({
       </div>
 
       {submitted && content.explanation && (
-        <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg mx-4 md:mx-0">
-          <p className="text-sm md:text-base text-gray-700 responsive-text">{content.explanation}</p>
+        <div className="p-4 bg-primary/10 border border-primary/30 rounded-xl">
+          <p className="text-sm md:text-base text-soft-gray">{content.explanation}</p>
         </div>
       )}
 
-      <div className="px-4 md:px-0">
+      <div>
         {!submitted ? (
           <button
             onClick={handleSubmit}
             disabled={!selectedId}
-            className="w-full md:w-auto px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
+            className="btn-primary w-full md:w-auto"
           >
             Verificar Resposta
           </button>
         ) : (
           <button
             onClick={handleComplete}
-            className="w-full md:w-auto px-6 py-3 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 transition-colors"
+            className="btn-neon w-full md:w-auto"
           >
-            Concluir Exercício
+            Concluir Exercicio
           </button>
         )}
       </div>

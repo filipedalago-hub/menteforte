@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Play, Pause } from 'lucide-react';
 import { useAutosave } from '../../hooks/useAutosave';
 
@@ -72,29 +72,29 @@ export function FocusedAttentionExercise({
       return;
     }
     if (reflection.trim().length < 10) {
-      alert('Por favor, escreva uma breve reflexão sobre a experiência.');
+      alert('Por favor, escreva uma breve reflexao sobre a experiencia.');
       return;
     }
     onComplete();
   };
 
   return (
-    <div className="space-y-6 w-full max-w-full overflow-hidden">
-      <div className="px-4 md:px-0">
-        <h3 className="text-lg md:text-xl font-semibold mb-2 responsive-text">Atenção Focada</h3>
-        <p className="text-sm md:text-base text-gray-600 responsive-text">{content.instruction}</p>
+    <div className="space-y-6 w-full">
+      <div>
+        <h3 className="text-lg md:text-xl font-semibold mb-2 text-soft-white">Atencao Focada</h3>
+        <p className="text-sm md:text-base text-soft-gray">{content.instruction}</p>
       </div>
 
-      <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-6 md:p-12 rounded-xl">
+      <div className="bg-gradient-to-br from-primary/20 to-neon-blue/20 p-6 md:p-12 rounded-xl border border-primary/30">
         <div className="flex flex-col items-center justify-center gap-6">
-          <div className="text-5xl md:text-6xl font-bold text-blue-900">
+          <div className="text-5xl md:text-6xl font-bold text-soft-white">
             {formatTime(timeLeft)}
           </div>
 
           <button
             onClick={() => setIsRunning(!isRunning)}
             disabled={timeLeft === 0}
-            className="relative z-20 w-full max-w-xs px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors flex items-center justify-center gap-2"
+            className="btn-primary relative z-20 w-full max-w-xs flex items-center justify-center gap-2"
           >
             {isRunning ? (
               <>
@@ -112,19 +112,19 @@ export function FocusedAttentionExercise({
       </div>
 
       {timerCompleted && (
-        <div className="px-4 md:px-0">
-          <label htmlFor="reflection" className="block text-sm md:text-base font-medium text-gray-700 mb-2">
-            Como foi sua experiência de foco?
+        <div>
+          <label htmlFor="reflection" className="label-dark">
+            Como foi sua experiencia de foco?
           </label>
           <textarea
             id="reflection"
             value={reflection}
             onChange={(e) => setReflection(e.target.value)}
-            placeholder="Descreva como se sentiu durante o exercício de atenção focada..."
-            className="w-full min-h-[120px] p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+            placeholder="Descreva como se sentiu durante o exercicio de atencao focada..."
+            className="input-dark w-full min-h-[120px] resize-none"
           />
           {saveIndicator && (
-            <p className="text-sm text-gray-500 mt-2" role="status" aria-live="polite">
+            <p className="text-sm text-soft-muted mt-2" role="status" aria-live="polite">
               {saveIndicator}
             </p>
           )}
@@ -132,13 +132,13 @@ export function FocusedAttentionExercise({
       )}
 
       {timerCompleted && (
-        <div className="px-4 md:px-0">
+        <div>
           <button
             onClick={handleComplete}
             disabled={reflection.trim().length < 10}
-            className="w-full md:w-auto px-6 py-3 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
+            className="btn-neon w-full md:w-auto"
           >
-            Concluir Exercício
+            Concluir Exercicio
           </button>
         </div>
       )}
