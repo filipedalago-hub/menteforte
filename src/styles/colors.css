@@ -1,11 +1,46 @@
 :root {
   --color-primary: #00AEEF;
-  --color-neon-cyan: #14F1FF;
-  --color-neon-blue: #0066FF;
+  --color-background: #0A0F2D;
+  --color-accent: #14F1FF;
+  --color-neon: #0066FF;
+  --color-white-soft: #E6F1FF;
+  --color-neutral: #2F3A4D;
+
   --color-dark: #0A0F2D;
   --color-dark-lighter: #111936;
   --color-titanium: #2F3A4D;
   --color-soft-white: #E6F1FF;
   --color-soft-gray: #A9B9D6;
   --color-soft-muted: #6B7A9F;
+  --color-neon-cyan: #14F1FF;
+  --color-neon-blue: #0066FF;
+
+  --gradient-primary: linear-gradient(135deg, #00AEEF 0%, #0066FF 100%);
+  --gradient-accent: linear-gradient(135deg, #14F1FF 0%, #00AEEF 100%);
+  --gradient-dark: linear-gradient(180deg, #0A0F2D 0%, #111936 100%);
+  --gradient-neon: linear-gradient(135deg, #0066FF 0%, #14F1FF 100%);
+
+  --shadow-glow-sm: 0 0 10px rgba(20, 241, 255, 0.3);
+  --shadow-glow-md: 0 0 20px rgba(20, 241, 255, 0.4);
+  --shadow-glow-lg: 0 0 30px rgba(20, 241, 255, 0.5);
+  --shadow-glow-primary: 0 0 20px rgba(0, 174, 239, 0.4);
+  --shadow-glow-accent: 0 0 20px rgba(20, 241, 255, 0.5);
+  --shadow-glow-neon: 0 0 25px rgba(0, 102, 255, 0.4);
+
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-full: 9999px;
+
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 350ms cubic-bezier(0.4, 0, 0.2, 1);
 }

@@ -1,6 +1,9 @@
 import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
 import { User } from '@supabase/supabase-js';
 import { supabase, Profile } from '../lib/supabase';
+import { analytics } from '../lib/analytics';
+import { errorTracking } from '../lib/errorTracking';
+import { storage } from '../lib/storage';
 
 type AuthContextType = {
   user: User | null;
@@ -21,18 +24,23 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState(true);
 
   const fetchProfile = async (userId: string) => {
-    const { data, error } = await supabase
-      .from('profiles')
-      .select('*')
-      .eq('id', userId)
-      .maybeSingle();
+    try {
+      const { data, error } = await supabase
+        .from('profiles')
+        .select('*')
+        .eq('id', userId)
+        .maybeSingle();
 
-    if (error) {
-      console.error('Error fetching profile:', error);
+      if (error) {
+        errorTracking.captureException(error, { context: 'fetchProfile', userId });
+        return null;
+      }
+
+      return data;
+    } catch (error) {
+      errorTracking.captureException(error, { context: 'fetchProfile', userId });
       return null;
     }
-
-    return data;
   };
 
   const refreshProfile = async () => {
@@ -47,6 +55,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setUser(session?.user ?? null);
       if (session?.user) {
         fetchProfile(session.user.id).then(setProfile);
+
+        analytics.setUserId(session.user.id);
+        errorTracking.setUser(session.user.id, session.user.email);
       }
       setLoading(false);
     });
@@ -56,8 +67,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         setUser(session?.user ?? null);
         if (session?.user) {
           fetchProfile(session.user.id).then(setProfile);
+
+          analytics.setUserId(session.user.id);
+          errorTracking.setUser(session.user.id, session.user.email);
         } else {
           setProfile(null);
+
+          analytics.setUserId(null);
+          errorTracking.setUser(null);
+          storage.clear();
         }
       })();
     });
@@ -66,55 +84,103 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const signIn = async (email: string, password: string) => {
-    const { error } = await supabase.auth.signInWithPassword({ email, password });
-    return { error: error ? new Error(error.message) : null };
+    try {
+      const { error } = await supabase.auth.signInWithPassword({ email, password });
+
+      if (error) {
+        errorTracking.captureException(error, { context: 'signIn', email });
+        return { error: new Error(error.message) };
+      }
+
+      analytics.userLogin('email');
+
+      return { error: null };
+    } catch (error) {
+      errorTracking.captureException(error, { context: 'signIn', email });
+      return { error: error instanceof Error ? error : new Error('Erro ao fazer login') };
+    }
   };
 
   const signUp = async (email: string, password: string, displayName: string) => {
-    const { data: authData, error: authError } = await supabase.auth.signUp({
-      email,
-      password,
-    });
-
-    if (authError) {
-      return { error: new Error(authError.message) };
-    }
-
-    if (authData.user) {
-      const { error: profileError } = await supabase.from('profiles').insert({
-        id: authData.user.id,
+    try {
+      const { data: authData, error: authError } = await supabase.auth.signUp({
         email,
-        display_name: displayName,
-        xp: 0,
-        level: 1,
-        current_streak: 0,
-        longest_streak: 0,
+        password,
       });
 
-      if (profileError) {
-        return { error: new Error(profileError.message) };
+      if (authError) {
+        errorTracking.captureException(authError, { context: 'signUp', email });
+        return { error: new Error(authError.message) };
       }
-    }
 
-    return { error: null };
+      if (authData.user) {
+        const { error: profileError } = await supabase.from('profiles').insert({
+          id: authData.user.id,
+          email,
+          display_name: displayName,
+          xp: 0,
+          level: 1,
+          current_streak: 0,
+          longest_streak: 0,
+        });
+
+        if (profileError) {
+          errorTracking.captureException(profileError, {
+            context: 'signUp_createProfile',
+            userId: authData.user.id
+          });
+          return { error: new Error(profileError.message) };
+        }
+
+        analytics.userSignup('email');
+      }
+
+      return { error: null };
+    } catch (error) {
+      errorTracking.captureException(error, { context: 'signUp', email });
+      return { error: error instanceof Error ? error : new Error('Erro ao criar conta') };
+    }
   };
 
   const signOut = async () => {
-    await supabase.auth.signOut();
-    setUser(null);
-    setProfile(null);
+    try {
+      analytics.userLogout();
+
+      await supabase.auth.signOut();
+      setUser(null);
+      setProfile(null);
+
+      analytics.setUserId(null);
+      errorTracking.setUser(null);
+      storage.clear();
+    } catch (error) {
+      errorTracking.captureException(error, { context: 'signOut' });
+    }
   };
 
   const updateProfile = async (data: Partial<Profile>) => {
     if (!user) return;
 
-    const { error } = await supabase
-      .from('profiles')
-      .update({ ...data, updated_at: new Date().toISOString() })
-      .eq('id', user.id);
+    try {
+      const { error } = await supabase
+        .from('profiles')
+        .update({ ...data, updated_at: new Date().toISOString() })
+        .eq('id', user.id);
 
-    if (!error) {
-      await refreshProfile();
+      if (error) {
+        errorTracking.captureException(error, {
+          context: 'updateProfile',
+          userId: user.id,
+          data
+        });
+      } else {
+        await refreshProfile();
+      }
+    } catch (error) {
+      errorTracking.captureException(error, {
+        context: 'updateProfile',
+        userId: user.id
+      });
     }
   };
 

@@ -18,7 +18,7 @@
   }
 
   .btn-neon {
-    @apply px-6 py-3 bg-gradient-special text-dark font-semibold rounded-xl hover:shadow-glow-md disabled:opacity-50 disabled:cursor-not-allowed transition-all;
+    @apply px-6 py-3 bg-gradient-accent text-dark font-semibold rounded-xl hover:shadow-glow-md disabled:opacity-50 disabled:cursor-not-allowed transition-all;
   }
 
   .card-dark {
