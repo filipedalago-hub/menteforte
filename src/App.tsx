@@ -13,6 +13,7 @@ import { ExercisePage } from './pages/ExercisePage';
 import { ProfilePage } from './pages/ProfilePage';
 import { SettingsPage } from './pages/SettingsPage';
 import { HelpPage } from './pages/HelpPage';
+import { GoalsPage } from './pages/GoalsPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
             <Route path="trilha/:trilhaSlug" element={<TrilhaPage />} />
             <Route path="trilha/:trilhaSlug/:pilarSlug" element={<PilarPage />} />
             <Route path="trilha/:trilhaSlug/:pilarSlug/exercicios/:exerciseSlug" element={<ExercisePage />} />
+            <Route path="goals" element={<GoalsPage />} />
             <Route path="profile" element={<ProfilePage />} />
             <Route path="settings" element={<SettingsPage />} />
             <Route path="help" element={<HelpPage />} />
