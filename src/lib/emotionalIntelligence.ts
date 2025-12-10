@@ -15,7 +15,7 @@ export interface UserContext {
 export interface EmotionalMessage {
   text: string;
   tone: 'celebrating' | 'encouraging' | 'empathetic' | 'wise' | 'gentle' | 'motivating';
-  type: 'welcome' | 'celebration' | 'progress' | 'return' | 'insight' | 'challenge' | 'reflection';
+  type?: 'welcome' | 'celebration' | 'progress' | 'return' | 'insight' | 'challenge' | 'reflection';
 }
 
 export const emotionalMessages = {
@@ -372,7 +372,7 @@ export class EmotionalIntelligenceEngine {
 
   static calculateConsistencyScore(
     currentStreak: number,
-    longestStreak: number,
+    _longestStreak: number,
     totalSessions: number,
     daysSinceStart: number
   ): number {

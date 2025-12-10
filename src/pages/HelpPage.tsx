@@ -1,4 +1,3 @@
-import React from 'react';
 import { HelpCircle, Zap, Award, Flame, TrendingUp } from 'lucide-react';
 
 export function HelpPage() {

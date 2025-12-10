@@ -19,6 +19,8 @@ export type Profile = {
   current_streak: number;
   longest_streak: number;
   last_activity_date: string | null;
+  total_sessions: number;
+  total_time_minutes: number;
   created_at: string;
   updated_at: string;
 };

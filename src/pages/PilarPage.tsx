@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { ChevronRight, CheckCircle, Circle } from 'lucide-react';
 import { supabase, Trilha, Pilar, Exercise, UserExerciseProgress } from '../lib/supabase';
@@ -117,7 +117,7 @@ export function PilarPage() {
       </div>
 
       <div className="space-y-4">
-        {exercises.map((exercise, index) => {
+        {exercises.map((exercise) => {
           const exerciseProgress = progress.get(exercise.id);
           const isCompleted = exerciseProgress?.completed || false;
 

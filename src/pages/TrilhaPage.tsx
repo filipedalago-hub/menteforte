@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { ChevronRight, Lock } from 'lucide-react';
 import { supabase, Trilha, Pilar } from '../lib/supabase';

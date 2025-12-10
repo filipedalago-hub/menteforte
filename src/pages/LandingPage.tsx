@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { Brain, Zap, Target, Award, TrendingUp, Users } from 'lucide-react';
 

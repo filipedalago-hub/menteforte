@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import { useState, FormEvent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Zap, AlertCircle, CheckCircle } from 'lucide-react';
+import { Zap, AlertCircle } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 
 export function SignupPage() {
@@ -12,7 +12,7 @@ export function SignupPage() {
   const { signUp } = useAuth();
   const navigate = useNavigate();
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setError('');
     setLoading(true);
