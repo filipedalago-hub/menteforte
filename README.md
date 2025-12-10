@@ -1,241 +1,76 @@
 # Mentes.ia - Plataforma de Desenvolvimento Mental com IA
 
-Uma aplicacao web futurista e gamificada para desenvolvimento mental e espiritual, potencializada por inteligencia artificial.
+![Mentes.ia](./public/assets/logo/mentes-ia-full.png)
 
-## Visao Geral
+## 🧠 Sobre o Projeto
 
-**Mentes.ia** e uma plataforma completa que oferece tres trilhas de aprendizado:
+Mentes.ia é uma plataforma futurista de desenvolvimento mental e espiritual que utiliza tecnologia de IA para ajudar usuários a transformarem suas vidas através de:
 
-1. **Fundamentos Mentais** - Base solida de autoconhecimento, inteligencia emocional e mentalidade de crescimento
-2. **Treinamento da Mente** - Neuro-habitos avancados para desbloquear potencial mental maximo
-3. **Proposito, Espiritualidade e Deus** - Descoberta de proposito e conexao espiritual profunda
+- 🎯 **Metas e Hábitos**: Sistema inteligente de acompanhamento
+- 🎮 **Gamificação**: XP, níveis, streaks e badges
+- 🧘 **Trilhas de Desenvolvimento**: 5 pilares (Físico, Emocional, Mental, Social, Espiritual)
+- 📊 **Dashboard Personalizado**: Acompanhamento de progresso
+- 💭 **Exercícios Interativos**: Meditação, reflexão e práticas guiadas
+- 🔄 **Feedback Emocional**: Sistema adaptativo de recompensas
 
-## Tecnologias Utilizadas
+## 🚀 Tecnologias
 
 - **Frontend**: React 18 + TypeScript + Vite
-- **Roteamento**: React Router v7
-- **Estilizacao**: TailwindCSS + CSS customizado
-- **Banco de Dados**: Supabase (PostgreSQL)
-- **Autenticacao**: Supabase Auth (Email/Password)
-- **Icones**: Lucide React
-- **Testes**: Vitest + React Testing Library
+- **Styling**: Tailwind CSS + Design System customizado
+- **Backend**: Supabase (PostgreSQL + Auth + RLS)
+- **Routing**: React Router v7
+- **Icons**: Lucide React
+- **PWA**: Progressive Web App ready
 
-## Funcionalidades Implementadas
+## 📦 Instalação
 
-### Sistema de Gamificacao
-- Sistema de XP (Pontos de Experiencia)
-- Niveis progressivos baseados em XP
-- Streak diario (sequencia de dias consecutivos)
-- Sistema de badges/conquistas
-- Progresso visual em todas as telas
-- Feedback imediato ao completar exercicios
-
-### Trilhas e Exercicios
-- 3 trilhas completas de aprendizado
-- 16 pilares distribuidos entre as trilhas
-- Multiplos exercicios por pilar
-- 9 tipos diferentes de exercicios:
-  - Reflexao (texto longo)
-  - Multipla escolha com feedback
-  - Escalas de avaliacao
-  - Checklists
-  - Atencao focada com timer
-  - Respiracao guiada com animacao
-  - Lista de gratidao
-  - Reflexao espiritual/oracao
-  - Autoavaliacao moral
-
-### Funcionalidades Tecnicas
-- Autosave com debounce (800ms)
-- Indicadores visuais de salvamento
-- Sistema de toasts para notificacoes
-- Breadcrumbs em todas as paginas
-- Skeletons durante carregamento
-- Navegacao responsiva (desktop/tablet/mobile)
-- Acessibilidade (ARIA labels, navegacao por teclado)
-- Animacoes e microinteracoes
-- Tratamento de erros com feedback visual
-
-### Paginas Implementadas
-- Landing page futurista
-- Login e Signup com tema dark
-- Dashboard com cards das trilhas
-- Pagina de trilha (lista de pilares)
-- Pagina de pilar (lista de exercicios)
-- Pagina de exercicio (todos os tipos)
-- Perfil do usuario
-- Configuracoes
-- Central de ajuda
-- Pagina 404
-
-## Como Rodar Localmente
-
-### Pre-requisitos
-- Node.js 18+ instalado
-- npm ou yarn
-
-### Instalacao
-
-1. Clone o repositorio:
-```bash
-cd /tmp/cc-agent/60272935/project
-```
-
-2. Instale as dependencias:
-```bash
+\`\`\`bash
 npm install
-```
-
-3. As variaveis de ambiente ja estao configuradas no arquivo `.env`
-
-4. Inicie o servidor de desenvolvimento:
-```bash
+cp .env.example .env
 npm run dev
-```
+\`\`\`
 
-5. Abra o navegador em `http://localhost:5173`
+## 🔧 Scripts Disponíveis
 
-## Como Testar
+- \`npm run dev\` - Inicia servidor de desenvolvimento
+- \`npm run build\` - Build de produção
+- \`npm run preview\` - Preview do build
+- \`npm run lint\` - Linter
+- \`npm run test\` - Testes
 
-### Testes Unitarios
+## 🎮 Sistema de Gamificação
 
-Execute os testes unitarios:
-```bash
-npm test
-```
+Ver documentação completa em: \`GAMIFICATION_SYSTEM.md\`
 
-Para rodar os testes em modo watch:
-```bash
-npm run test:watch
-```
+### XP (Experience Points)
+- Check-in diário: +5 XP
+- Hábito concluído: +5 XP
+- Meta alcançada: +10 XP
+- Exercício completado: +8 XP
 
-## Build de Producao
+### Níveis (1-10)
+Aprendiz → Explorador → Praticante → Dedicado → Resiliente → Focado → Disciplinado → Transformador → Iluminado → Mestre Interior
 
-Para criar o build de producao:
-```bash
-npm run build
-```
+### Badges (15 conquistas)
+De Comum a Lendário, organizados por raridade
 
-Os arquivos otimizados serao gerados na pasta `dist/`.
+## 📱 PWA
 
-Para testar o build localmente:
-```bash
-npm run preview
-```
+O app é um PWA completo e pode ser instalado em dispositivos móveis e desktop.
 
-## Arquitetura do Projeto
+## 🔐 Segurança
 
-```
-src/
-├── components/          # Componentes reutilizaveis
-│   ├── exercises/      # Componentes de exercicios
-│   ├── __tests__/      # Testes de componentes
-│   ├── AppLayout.tsx
-│   ├── Breadcrumbs.tsx
-│   ├── Logo.tsx
-│   ├── ProgressBar.tsx
-│   ├── Skeleton.tsx
-│   ├── Toast.tsx
-│   └── ProtectedRoute.tsx
-├── contexts/           # Contextos React (Auth)
-├── hooks/             # Custom hooks
-├── lib/               # Configuracao Supabase
-├── pages/             # Paginas da aplicacao
-├── utils/             # Funcoes utilitarias
-└── test/              # Setup de testes
-```
+- RLS habilitado em todas as tabelas
+- Environment variables para secrets
+- HTTPS obrigatório
+- Headers de segurança configurados
 
-## Banco de Dados
+## 📝 Licença
 
-### Tabelas Principais
-- `profiles` - Perfis de usuario com XP, level, streak
-- `trilhas` - Trilhas de aprendizado
-- `pilares` - Pilares dentro de cada trilha
-- `exercises` - Exercicios individuais
-- `user_exercise_progress` - Progresso do usuario
-- `badges` - Conquistas disponiveis
-- `user_badges` - Conquistas desbloqueadas
-
-Todas as tabelas possuem Row Level Security (RLS) configurado para garantir que usuarios so acessem seus proprios dados.
-
-## Design Futurista
-
-### Paleta de Cores Tech
-- **Azul Primario**: #00AEEF - Botoes principais, destaques
-- **Ciano Eletrico**: #14F1FF - Efeitos glow, estados ativos
-- **Azul Neonico**: #0066FF - Gradientes, elementos fortes
-- **Fundo Escuro**: #0A0F2D - Background principal
-- **Fundo Escuro Claro**: #111936 - Cards e secoes
-- **Cinza Titanium**: #2F3A4D - Elementos secundarios
-- **Branco Suave**: #E6F1FF - Textos principais
-- **Cinza Suave**: #A9B9D6 - Subtitulos
-
-### Gradientes
-- **Principal**: #00AEEF → #0066FF
-- **Especial**: #14F1FF → #00AEEF
-
-### Identidade Visual
-- **Logo**: Cerebro com circuitos neurais em cyan neon
-- **Tipografia**: Mentes.ia (com destaque cyan no ".ia")
-- **Efeitos**: Glow neon, blur, animacoes float e pulse
-- **Icones**: Lucide React com cores futuristas
-- **Tema**: Sci-fi, high-tech, minimalista
-
-### Estetica
-- Interface futurista minimalista
-- Neon cyan com detalhes sutis
-- Luxo tecnologico
-- Cartoes flutuantes com bordas glow
-- UI elegante, limpa e moderna
-- Animacoes suaves e microinteracoes
-
-## Estrutura de Gamificacao
-
-### Sistema de XP
-- Cada exercicio concede 10-20 XP
-- Nivel = √(XP/100) + 1
-- XP para proximo nivel = (nivel²) × 100
-
-### Sistema de Streak
-- Completa pelo menos 1 exercicio por dia
-- Streak quebra se passar mais de 1 dia sem atividade
-- Registro do maior streak alcancado
-
-### Badges Disponiveis
-1. **Primeiro Passo** - Complete 1 exercicio
-2. **Explorador** - Complete 10 exercicios
-3. **Dedicado** - 7 dias de sequencia
-4. **Mestre Mental** - Complete 50 exercicios
-5. **Fogo Constante** - 30 dias de sequencia
-
-## Responsividade
-
-A aplicacao e totalmente responsiva com breakpoints:
-- Mobile: < 768px
-- Tablet: 768px - 1024px
-- Desktop: > 1024px
-
-## Acessibilidade
-
-- Todos os elementos interativos sao acessiveis via teclado
-- ARIA labels em todos os componentes importantes
-- Roles semanticos (navigation, main, button, etc.)
-- Contraste adequado de cores (WCAG AA)
-- Feedback visual e textual para acoes
-- Foco visivel em todos os elementos interativos
-
-## Observacoes Importantes
-
-1. **Autenticacao**: Email/password via Supabase Auth
-2. **Persistencia**: Todos os dados sao salvos no Supabase
-3. **Autosave**: Respostas sao salvas automaticamente apos 800ms
-4. **Offline**: Nao ha suporte offline (requer conexao)
-5. **Browser Support**: Navegadores modernos (Chrome, Firefox, Safari, Edge)
-
-## Autor
-
-Desenvolvido como plataforma completa de desenvolvimento mental com IA e design futurista.
+MIT License
 
 ---
 
-**Mentes.ia** - Transformando mentes, transformando vidas.
+**Desenvolvido com 💙 pela equipe Mentes.ia**
+
+*Transforme sua mente, transforme sua vida.*

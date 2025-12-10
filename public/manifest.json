@@ -5,23 +5,46 @@
   "start_url": "/",
   "display": "standalone",
   "background_color": "#0A0F2D",
-  "theme_color": "#0A0F2D",
+  "theme_color": "#14F1FF",
   "orientation": "portrait-primary",
+  "scope": "/",
   "icons": [
     {
       "src": "/assets/logo/mentes-ia-icon.png",
       "sizes": "192x192",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
     },
     {
       "src": "/assets/logo/mentes-ia-icon.png",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/logo/mentes-ia-icon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/assets/logo/mentes-ia-icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ],
-  "categories": ["health", "education", "lifestyle"],
+  "categories": ["health", "education", "lifestyle", "productivity"],
   "lang": "pt-BR",
-  "dir": "ltr"
+  "dir": "ltr",
+  "display_override": ["window-controls-overlay", "standalone", "browser"],
+  "prefer_related_applications": false,
+  "screenshots": [
+    {
+      "src": "/assets/logo/mentes-ia-full.png",
+      "sizes": "540x720",
+      "type": "image/png",
+      "form_factor": "narrow"
+    }
+  ]
 }
