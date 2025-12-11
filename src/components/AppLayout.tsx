@@ -1,9 +1,11 @@
 import React from 'react';
 import { Outlet, Link, useLocation, useNavigate } from 'react-router-dom';
-import { Home, User, Settings, HelpCircle, LogOut, Flame, Zap, Target, TrendingUp } from 'lucide-react';
+import { Home, User, Settings, HelpCircle, LogOut, Target, TrendingUp } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
-import { xpProgress } from '../utils/gamification';
 import { Logo } from './Logo';
+import { LivesDisplay } from './gamification/LivesDisplay';
+import { AnimatedXPBar } from './gamification/AnimatedXPBar';
+import { AnimatedRoutes } from './AnimatedRoutes';
 
 export function AppLayout() {
   const { profile, signOut } = useAuth();
@@ -17,7 +19,6 @@ export function AppLayout() {
 
   const isActive = (path: string) => location.pathname === path;
 
-  const progress = profile ? xpProgress(profile.xp) : { percentage: 0 };
 
   return (
     <div className="min-h-screen bg-dark no-scroll-x">
@@ -29,28 +30,8 @@ export function AppLayout() {
             </Link>
 
             {profile && (
-              <div className="flex items-center gap-2 md:gap-6">
-                <div className="flex items-center gap-2 md:gap-4">
-                  <div className="flex items-center gap-1 md:gap-2 px-2 md:px-3 py-1 md:py-1.5 bg-neon-cyan/10 border border-neon-cyan/30 rounded-full">
-                    <Flame className="w-3 h-3 md:w-4 md:h-4 text-neon-cyan" />
-                    <span className="font-semibold text-xs md:text-sm text-neon-cyan">{profile.current_streak}</span>
-                  </div>
-
-                  <div className="flex items-center gap-1 md:gap-2 px-2 md:px-3 py-1 md:py-1.5 bg-primary/10 border border-primary/30 rounded-full">
-                    <Zap className="w-3 h-3 md:w-4 md:h-4 text-primary" />
-                    <span className="font-semibold text-xs md:text-sm text-primary">{profile.xp}</span>
-                  </div>
-
-                  <div className="hidden sm:flex items-center gap-2">
-                    <span className="text-xs md:text-sm font-medium text-soft-white">Nv {profile.level}</span>
-                    <div className="w-16 md:w-24 bg-titanium rounded-full h-2">
-                      <div
-                        className="bg-gradient-primary h-full rounded-full transition-all shadow-glow-sm"
-                        style={{ width: `${progress.percentage}%` }}
-                      />
-                    </div>
-                  </div>
-                </div>
+              <div className="flex items-center gap-3">
+                <LivesDisplay />
               </div>
             )}
           </div>
@@ -144,7 +125,9 @@ export function AppLayout() {
           </aside>
 
           <main className="flex-1 min-w-0">
-            <Outlet />
+            <AnimatedRoutes>
+              <Outlet />
+            </AnimatedRoutes>
           </main>
         </div>
       </div>
