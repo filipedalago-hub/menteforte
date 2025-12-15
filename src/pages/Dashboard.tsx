@@ -16,6 +16,8 @@ import { useEmotionalFeedback } from '../hooks/useEmotionalFeedback';
 import { usePremiumToast } from '../hooks/usePremiumToast';
 import { PremiumToast } from '../components/PremiumToast';
 import { haptics } from '../lib/haptics';
+import { SafeSection } from '../components/SafeSection';
+import { StatCard } from '../components/StatCard';
 
 const ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
   Brain,
@@ -103,25 +105,31 @@ export function Dashboard() {
         onClose={toast.hide}
       />
 
-      <MoodTracker
-        isOpen={showMoodTracker}
-        onClose={() => setShowMoodTracker(false)}
-        onSubmit={handleMoodSubmit}
-      />
-
-      <DailyInsight
-        isOpen={showDailyInsight}
-        onClose={() => setShowDailyInsight(false)}
-        insight={dailyInsight}
-      />
-
-      {currentMessage && (
-        <EmotionalFeedback
-          message={currentMessage.message}
-          type={currentMessage.type}
-          onDismiss={dismissMessage}
+      <SafeSection sectionName="MoodTracker" fallbackMessage="">
+        <MoodTracker
+          isOpen={showMoodTracker}
+          onClose={() => setShowMoodTracker(false)}
+          onSubmit={handleMoodSubmit}
         />
-      )}
+      </SafeSection>
+
+      <SafeSection sectionName="DailyInsight" fallbackMessage="">
+        <DailyInsight
+          isOpen={showDailyInsight}
+          onClose={() => setShowDailyInsight(false)}
+          insight={dailyInsight}
+        />
+      </SafeSection>
+
+      <SafeSection sectionName="EmotionalFeedback" fallbackMessage="">
+        {currentMessage && (
+          <EmotionalFeedback
+            message={currentMessage.message}
+            type={currentMessage.type}
+            onDismiss={dismissMessage}
+          />
+        )}
+      </SafeSection>
 
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -138,177 +146,168 @@ export function Dashboard() {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-          <PremiumCard variant="glass" padding="md" interactive={false}>
-            <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ delay: 0.1, type: 'spring' }}
-              className="flex items-center gap-3"
-            >
-              <div className="p-3 bg-primary/20 rounded-xl">
-                <Zap className="w-6 h-6 text-primary" />
-              </div>
-              <div>
-                <Caption>XP Total</Caption>
-                <TitleMD className="text-primary">{profile?.xp || 0}</TitleMD>
-              </div>
-            </motion.div>
-          </PremiumCard>
+          <SafeSection sectionName="XP Card" fallbackMessage="XP indisponível">
+            <StatCard
+              icon={Zap}
+              label="XP Total"
+              value={profile?.xp}
+              color="text-primary"
+              bgColor="bg-primary/20"
+              delay={0.1}
+              fallbackValue={0}
+            />
+          </SafeSection>
 
-          <PremiumCard variant="glass" padding="md" interactive={false}>
-            <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ delay: 0.2, type: 'spring' }}
-              className="flex items-center gap-3"
-            >
+          <SafeSection sectionName="Streak Card" fallbackMessage="Streak indisponível">
+            <StatCard
+              icon={Flame}
+              label="Sequência"
+              value={currentStreak >= 0 ? `${currentStreak} dias` : null}
+              color="text-orange-400"
+              bgColor="bg-gradient-to-r from-orange-500/20 to-red-500/20"
+              delay={0.2}
+              fallbackValue="0 dias"
+            />
+          </SafeSection>
+
+          <SafeSection sectionName="Badges Card" fallbackMessage="Badges indisponíveis">
+            <StatCard
+              icon={Award}
+              label="Badges"
+              value={badges?.length}
+              color="text-accent"
+              bgColor="bg-accent/20"
+              delay={0.3}
+              fallbackValue={0}
+            />
+          </SafeSection>
+
+          <SafeSection sectionName="Exercises Card" fallbackMessage="Exercícios indisponíveis">
+            <StatCard
+              icon={Target}
+              label="Exercícios"
+              value={totalExercisesCompleted}
+              color="text-green-400"
+              bgColor="bg-green-500/20"
+              delay={0.4}
+              fallbackValue={0}
+            />
+          </SafeSection>
+        </div>
+
+        <SafeSection sectionName="XP Progress Bar" fallbackMessage="Progresso indisponível">
+          <PremiumCard variant="glow" padding="lg" className="mb-8" interactive={false}>
+            <div className="flex items-center justify-between mb-4">
+              <TitleMD>Seu Progresso</TitleMD>
               <motion.div
-                className="p-3 bg-gradient-to-r from-orange-500/20 to-red-500/20 rounded-xl"
-                animate={{ rotate: [0, 5, -5, 0] }}
+                animate={{ scale: [1, 1.1, 1] }}
                 transition={{ duration: 2, repeat: Infinity }}
               >
-                <Flame className="w-6 h-6 text-orange-400" />
+                <TrendingUp className="w-5 h-5 text-accent" />
               </motion.div>
-              <div>
-                <Caption>Sequência</Caption>
-                <TitleMD className="text-orange-400">{currentStreak} dias</TitleMD>
-              </div>
-            </motion.div>
-          </PremiumCard>
-
-          <PremiumCard variant="glass" padding="md" interactive={false}>
-            <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ delay: 0.3, type: 'spring' }}
-              className="flex items-center gap-3"
-            >
-              <div className="p-3 bg-accent/20 rounded-xl">
-                <Award className="w-6 h-6 text-accent" />
-              </div>
-              <div>
-                <Caption>Badges</Caption>
-                <TitleMD className="text-accent">{badges.length}</TitleMD>
-              </div>
-            </motion.div>
-          </PremiumCard>
-
-          <PremiumCard variant="glass" padding="md" interactive={false}>
-            <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ delay: 0.4, type: 'spring' }}
-              className="flex items-center gap-3"
-            >
-              <div className="p-3 bg-green-500/20 rounded-xl">
-                <Target className="w-6 h-6 text-green-400" />
-              </div>
-              <div>
-                <Caption>Exercícios</Caption>
-                <TitleMD className="text-green-400">{totalExercisesCompleted}</TitleMD>
-              </div>
-            </motion.div>
-          </PremiumCard>
-        </div>
-
-        <PremiumCard variant="glow" padding="lg" className="mb-8" interactive={false}>
-          <div className="flex items-center justify-between mb-4">
-            <TitleMD>Seu Progresso</TitleMD>
-            <motion.div
-              animate={{ scale: [1, 1.1, 1] }}
-              transition={{ duration: 2, repeat: Infinity }}
-            >
-              <TrendingUp className="w-5 h-5 text-accent" />
-            </motion.div>
-          </div>
-          <EnhancedXPBar currentXP={profile?.xp || 0} showDetails />
-        </PremiumCard>
-
-        <div className="mb-6">
-          <TitleMD className="mb-4">Suas Trilhas</TitleMD>
-        </div>
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {trilhas.map((trilha, index) => {
-            const IconComponent = ICON_MAP[trilha.icon_name] || Brain;
-            return (
-              <Link
-                key={trilha.id}
-                to={`/app/trilha/${trilha.slug}`}
-                onClick={() => haptics.light()}
-              >
-                <PremiumCard
-                  variant="glass"
-                  padding="lg"
-                  glowColor="#00AEEF"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                >
-                  <div className="flex items-start gap-4 mb-4">
-                    <motion.div
-                      className="p-4 bg-primary/20 rounded-2xl"
-                      whileHover={{ rotate: 360 }}
-                      transition={{ duration: 0.5 }}
-                    >
-                      <IconComponent className="w-8 h-8 text-primary" />
-                    </motion.div>
-                    <div className="flex-1">
-                      <h3 className="text-xl font-semibold text-soft-white mb-2">
-                        {trilha.name}
-                      </h3>
-                      <Caption>{trilha.description}</Caption>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center justify-between pt-4 border-t border-white/10">
-                    <Caption>Explorar trilha</Caption>
-                    <ChevronRight className="w-5 h-5 text-primary" />
-                  </div>
-                </PremiumCard>
-              </Link>
-            );
-          })}
-        </div>
-
-        {badges.length > 0 && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 }}
-            className="mt-8"
-          >
-            <TitleMD className="mb-4">Conquistas Recentes</TitleMD>
-            <div className="grid grid-cols-3 gap-4">
-              {badges.slice(0, 3).map((userBadge: any, index: number) => (
-                <PremiumCard
-                  key={userBadge.id}
-                  variant="glass"
-                  padding="md"
-                  interactive={false}
-                  initial={{ opacity: 0, scale: 0 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.6 + index * 0.1, type: 'spring' }}
-                >
-                  <div className="text-center">
-                    <motion.div
-                      className="inline-flex p-4 bg-accent/20 rounded-2xl mb-3"
-                      animate={{ rotate: [0, 5, -5, 0] }}
-                      transition={{ duration: 3, repeat: Infinity }}
-                    >
-                      <Award className="w-8 h-8 text-accent" />
-                    </motion.div>
-                    <p className="text-sm font-semibold text-soft-white mb-1">
-                      {userBadge.badge?.name}
-                    </p>
-                    <Caption className="line-clamp-2">
-                      {userBadge.badge?.description}
-                    </Caption>
-                  </div>
-                </PremiumCard>
-              ))}
             </div>
-          </motion.div>
+            <EnhancedXPBar currentXP={profile?.xp || 0} showDetails />
+          </PremiumCard>
+        </SafeSection>
+
+        <SafeSection sectionName="Trilhas" fallbackMessage="Erro ao carregar trilhas">
+          <div className="mb-6">
+            <TitleMD className="mb-4">Suas Trilhas</TitleMD>
+          </div>
+
+          {trilhas && trilhas.length > 0 ? (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {trilhas.map((trilha, index) => {
+                const IconComponent = ICON_MAP[trilha?.icon_name] || Brain;
+                return (
+                  <Link
+                    key={trilha?.id || index}
+                    to={`/app/trilha/${trilha?.slug || ''}`}
+                    onClick={() => haptics.light()}
+                  >
+                    <PremiumCard
+                      variant="glass"
+                      padding="lg"
+                      glowColor="#00AEEF"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: index * 0.1 }}
+                    >
+                      <div className="flex items-start gap-4 mb-4">
+                        <motion.div
+                          className="p-4 bg-primary/20 rounded-2xl"
+                          whileHover={{ rotate: 360 }}
+                          transition={{ duration: 0.5 }}
+                        >
+                          <IconComponent className="w-8 h-8 text-primary" />
+                        </motion.div>
+                        <div className="flex-1">
+                          <h3 className="text-xl font-semibold text-soft-white mb-2">
+                            {trilha?.name || 'Trilha sem nome'}
+                          </h3>
+                          <Caption>{trilha?.description || 'Sem descrição'}</Caption>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center justify-between pt-4 border-t border-white/10">
+                        <Caption>Explorar trilha</Caption>
+                        <ChevronRight className="w-5 h-5 text-primary" />
+                      </div>
+                    </PremiumCard>
+                  </Link>
+                );
+              })}
+            </div>
+          ) : (
+            <PremiumCard variant="glass" padding="lg">
+              <div className="text-center py-8">
+                <Brain className="w-12 h-12 text-primary/40 mx-auto mb-4" />
+                <p className="text-soft-gray">Nenhuma trilha disponível no momento</p>
+              </div>
+            </PremiumCard>
+          )}
+        </SafeSection>
+
+        {badges && badges.length > 0 && (
+          <SafeSection sectionName="Badges" fallbackMessage="Erro ao carregar conquistas">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
+              className="mt-8"
+            >
+              <TitleMD className="mb-4">Conquistas Recentes</TitleMD>
+              <div className="grid grid-cols-3 gap-4">
+                {badges.slice(0, 3).map((userBadge: any, index: number) => (
+                  <PremiumCard
+                    key={userBadge?.id || index}
+                    variant="glass"
+                    padding="md"
+                    interactive={false}
+                    initial={{ opacity: 0, scale: 0 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.6 + index * 0.1, type: 'spring' }}
+                  >
+                    <div className="text-center">
+                      <motion.div
+                        className="inline-flex p-4 bg-accent/20 rounded-2xl mb-3"
+                        animate={{ rotate: [0, 5, -5, 0] }}
+                        transition={{ duration: 3, repeat: Infinity }}
+                      >
+                        <Award className="w-8 h-8 text-accent" />
+                      </motion.div>
+                      <p className="text-sm font-semibold text-soft-white mb-1">
+                        {userBadge?.badge?.name || 'Badge'}
+                      </p>
+                      <Caption className="line-clamp-2">
+                        {userBadge?.badge?.description || 'Conquista desbloqueada'}
+                      </Caption>
+                    </div>
+                  </PremiumCard>
+                ))}
+              </div>
+            </motion.div>
+          </SafeSection>
         )}
       </motion.div>
     </MainLayout>
